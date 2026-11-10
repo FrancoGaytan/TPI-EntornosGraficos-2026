@@ -1,12 +1,13 @@
 <?php
-    include('./restringidoAlumno.php');
+require_once __DIR__ . '/includes/bootstrap.php';
+    require_app('includes/restringidoAlumno.php');
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <?php
-    include('templates/header.php')
+    require_app('templates/header.php')
 ?>
 
 <div class="container">
@@ -23,7 +24,7 @@
         <select class="form-select" name="idMateria" id="idMateria" aria-label="Materias">
             <option selected value=''>Cualquier materia</option>
             <?php
-            include('getAllMaterias.php')
+            require_app('includes/getAllMaterias.php')
             ?>
         </select>
         <br>
@@ -42,7 +43,7 @@
     </thead>
     <tbody>
         <?php
-        include('getAllConsultas.php')
+        require_app('includes/getAllConsultas.php')
         ?>
     </tbody>
     </table>
@@ -50,7 +51,7 @@
 </div>
 
 <?php
-    include('templates/footer.php')
+    require_app('templates/footer.php')
 ?>
 
 </html>

@@ -1,8 +1,11 @@
+<?php
+require_once __DIR__ . '/includes/bootstrap.php';
+?>
 <!doctype html>
 <html lang="en">
 
 <?php
-    include('templates/header.php')
+    require_app('templates/header.php')
 ?>
 
 <link href="css/estilos.css" rel="stylesheet">
@@ -14,7 +17,7 @@
             <div class="titulo">
                 <h2>Contacto</h2>
             </div>  
-            <form action="enviarFormulario.php" method="post">
+            <form action="./acciones/enviarFormulario.php" method="post">
 
                 <label for="nombre" class="colocar_nombre">Nombre
                     <span class="obligatorio">*</span>
@@ -60,7 +63,7 @@
 </div>
 
 <?php
-     include('templates/footer.php')
+     require_app('templates/footer.php')
 ?>
 
 </html>

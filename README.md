@@ -1,24 +1,24 @@
-# TPI - Entornos Gráficos
+# TPI - Entornos Gráficos (redeploy 2026)
 
-## Módulo de gestión de consultas
+**Módulo:** gestión de consultas docentes (UTN FRRO).
 
-Trabajo práctico integrador de la materia Entornos Gráficos.
+## Correr sin XAMPP (Docker)
 
-Integrantes:
-- Aldana Muñoz
-- Franco Gaytan
-- Federico Navós
+```bash
+cp ModuloAvisoDeConsultas/config/db.config.docker.php ModuloAvisoDeConsultas/config/db.config.php
+docker compose up --build
+```
 
-## Uso de la aplicación
+→ **http://localhost:8080/index.php** (detalle en [`database/README.md`](database/README.md))
 
-Link: https://moduloconsultasdocentes.000webhostapp.com/
+## Correr con XAMPP
 
+Ver [`database/README.md`](database/README.md) opción B.
 
+## Demo
 
-### Credenciales docente (demo)
-Usuario: rdario@gmail.com
-
-Contraseña: 111111
-
-### Credenciales alumno (demo)
-Usuario: rdario@gmail.com
+| Rol | Acceso |
+|-----|--------|
+| Docente | `rdario@gmail.com` / `111111` |
+| Alumno | `rdario@gmail.com` (solo email) |
+| Admin | `admin@utn.edu.ar` / `admin111` |

@@ -1,13 +1,14 @@
 <?php
-    include_once('./isSessionStarted.php');
-    include('./restringidoDocente.php')
+require_once __DIR__ . '/includes/bootstrap.php';
+    require_app('includes/isSessionStarted.php');
+    require_app('includes/restringidoDocente.php')
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <?php
-    include('templates/header.php')
+    require_app('templates/header.php')
 ?>
 
 <link href="css/estilos.css" rel="stylesheet">
@@ -24,7 +25,7 @@
 
 <div class="contenido">
     
-  <form action="./registrarConsulta.php" method="post" class="formulario form-group">
+  <form action="./acciones/registrarConsulta.php" method="post" class="formulario form-group">
       <?php
       if ((isset($_SESSION['esAdmin'])) && ($_SESSION['esAdmin'])) {
         echo '<div class="alert alert-danger" role="alert">
@@ -40,7 +41,7 @@
       <select name="idMateria" class="form-select" aria-label="Default select example" required>
         <option disabled selected>Selecciona la materia</option>
         <?php
-          include('getAllMaterias.php')
+          require_app('includes/getAllMaterias.php')
         ?>
       </select>
 
@@ -64,7 +65,7 @@
 </div>
 
 <?php
-    include('templates/footer.php')
+    require_app('templates/footer.php')
 ?>
 
 </html>

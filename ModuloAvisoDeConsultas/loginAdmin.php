@@ -1,12 +1,15 @@
+<?php
+require_once __DIR__ . '/includes/bootstrap.php';
+?>
 <!doctype html>
 <html lang="en">
 
 <?php
-    include('templates/header.php')
+    require_app('templates/header.php')
 ?>
 
 <div class="contenido margined">
-  <form action="./validarAdmin.php" method="post" class="formulario">
+  <form action="./acciones/validarAdmin.php" method="post" class="formulario">
       <div class="titulo">
           <h2>Inicio de sesión</h2>
       </div>
@@ -26,7 +29,7 @@
 </div>
 
 <?php
-    include('templates/footer.php')
+    require_app('templates/footer.php')
 ?>
 
 </html>

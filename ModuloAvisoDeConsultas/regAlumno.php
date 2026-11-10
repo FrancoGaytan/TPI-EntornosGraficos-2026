@@ -1,16 +1,17 @@
 <?php
-    include('./restringidoAdmin.php')
+require_once __DIR__ . '/includes/bootstrap.php';
+    require_app('includes/restringidoAdmin.php')
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <?php
-    include('templates/header.php')
+    require_app('templates/header.php')
 ?>
 
 <div class="contenido">
-  <form action= "./registrarAlumno.php" method="post" class="formulario">
+  <form action= "./acciones/registrarAlumno.php" method="post" class="formulario">
       
       <div class="titulo">
           <h2>Registro Alumno</h2>
@@ -36,7 +37,7 @@
     </form>
 </div>
 <?php
-    include('templates/footer.php')
+    require_app('templates/footer.php')
 ?>
 
 </html>

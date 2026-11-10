@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/../includes/bootstrap.php';
+?>
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-light text-muted">
     <!-- Section: Social media -->

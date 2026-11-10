@@ -1,12 +1,13 @@
 <?php
-    include('./restringidoAdmin.php')
+require_once __DIR__ . '/includes/bootstrap.php';
+    require_app('includes/restringidoAdmin.php')
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <?php
-    include('templates/header.php')
+    require_app('templates/header.php')
 ?>
 
 <style>
@@ -55,7 +56,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            include('getAllDocentes.php')
+                            require_app('includes/getAllDocentes.php')
                             ?>
                         </tbody>
                     </table>
@@ -68,7 +69,7 @@
 </div>
 
 <?php
-    include('templates/footer.php')
+    require_app('templates/footer.php')
 ?>
 
 </html>

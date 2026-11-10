@@ -1,18 +1,19 @@
 <?php
-    include('./restringidoDocente.php')
+require_once __DIR__ . '/includes/bootstrap.php';
+    require_app('includes/restringidoDocente.php')
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <?php
-    include('templates/header.php')
+    require_app('templates/header.php')
 ?>
 
 <link href="css/estilos.css" rel="stylesheet">
 
 <div class="contenido">
-  <form action="./reprogramar.php" method="post" class="formulario">
+  <form action="./acciones/reprogramar.php" method="post" class="formulario">
       <div class="titulo">
           <h2>Ingrese la nueva fecha para la consulta</h2>
       </div>
@@ -36,7 +37,7 @@
 ?>
 
 <?php
-    include('templates/footer.php')
+    require_app('templates/footer.php')
 ?>
 
 </html>

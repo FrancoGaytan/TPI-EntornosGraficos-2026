@@ -1,8 +1,11 @@
+<?php
+require_once __DIR__ . '/includes/bootstrap.php';
+?>
 <!doctype html>
 <html lang="en">
 
 <?php
-     include('templates/header.php')
+     require_app('templates/header.php')
 ?>
      
 <body>
@@ -26,7 +29,7 @@
 </body>
     
 <?php
-    include('templates/footer.php')
+    require_app('templates/footer.php')
 ?>
 
 </html>

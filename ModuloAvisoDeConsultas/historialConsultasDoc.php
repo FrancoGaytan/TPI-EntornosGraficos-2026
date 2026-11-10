@@ -1,11 +1,12 @@
 <?php
-     include('./restringidoDocente.php')
+require_once __DIR__ . '/includes/bootstrap.php';
+     require_app('includes/restringidoDocente.php')
 ?>
 <!doctype html>
 <html lang="en">
 
 <?php
-    include('templates/header.php')
+    require_app('templates/header.php')
 ?>
 
 <div class="container">
@@ -39,7 +40,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        include('getMyConsultasRealizadas.php')
+                        require_app('includes/getMyConsultasRealizadas.php')
                         ?>
                     </tbody>
                 </table>
@@ -51,7 +52,7 @@
 </div>
 
 <?php
-    include('templates/footer.php')
+    require_app('templates/footer.php')
 ?>
 
 </html>

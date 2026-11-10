@@ -1,3 +1,6 @@
+<?php
+require_once __DIR__ . '/../includes/bootstrap.php';
+?>
 <!doctype html>
 <html lang="en">
 
@@ -54,7 +57,7 @@
                         if(isset($_SESSION['legajo'])) {
                             echo '
                             <li class="nav-item">
-                            <a class="nav-link" href="./cerrarSesion.php" id="Ingreso">Cerrar sesión</a>
+                            <a class="nav-link" href="./acciones/cerrarSesion.php" id="Ingreso">Cerrar sesión</a>
                             </li>
                             ';
                         } else {

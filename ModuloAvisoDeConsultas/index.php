@@ -1,17 +1,12 @@
+<?php
+require_once __DIR__ . '/includes/bootstrap.php';
+?>
 <!doctype html>
 <html lang="en">
 
 <?php
-        include('templates/header.php')
+        require_app('templates/header.php')
 ?>
-
-<table>
-    <tr>
-        <td>
-
-        </td>
-    </tr>
-</table>
 <div class="margined" align="center">
     
         <button class="btn btn-dark" role="button" onclick="window.location.href = 'loginAlumno.php'">
@@ -30,7 +25,7 @@
 </div>
 
 <?php
-    include('templates/footer.php')
+    require_app('templates/footer.php')
 ?>
 
 </html>
