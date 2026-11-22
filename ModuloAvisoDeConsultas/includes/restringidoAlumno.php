@@ -2,12 +2,8 @@
 require_once __DIR__ . '/bootstrap.php';
 require_app('includes/isSessionStarted.php');
 
-if ((!isset($_SESSION['esAlumno'])) or (!$_SESSION['esAlumno'])){ 
-    echo '<div class="alert alert-danger" role="alert">
-    Solo los Alumnos tienen acceso a esta página
-    </div>';
-    require __DIR__ . '/../index.php';
-    die();
+if (empty($_SESSION['esAlumno'])) {
+    $aviso = urlencode('Para entrar a esta página iniciá sesión como alumno.');
+    header('Location: ' . app_url('loginAlumno.php') . '?aviso=' . $aviso);
+    exit();
 }
-
-?>

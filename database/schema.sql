@@ -1,5 +1,4 @@
--- TPI Módulo Aviso de Consultas — esquema inferido del código PHP
--- Base: consultas_materias
+-- Base consultas_materias
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -12,7 +11,7 @@ USE consultas_materias;
 
 CREATE TABLE materias (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  nombre_materia VARCHAR(120) NOT NULL,
+  nombre_materia VARCHAR(160) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
@@ -22,6 +21,7 @@ CREATE TABLE profesores (
   apellido VARCHAR(80) NOT NULL,
   email VARCHAR(120) NOT NULL,
   contrasenia VARCHAR(255) NOT NULL,
+  activo TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (legajo),
   UNIQUE KEY uk_profesores_email (email)
 ) ENGINE=InnoDB;
@@ -53,6 +53,7 @@ CREATE TABLE consultas (
   id_profesor INT UNSIGNED NOT NULL,
   id_materia INT UNSIGNED NOT NULL,
   estado TINYINT NOT NULL DEFAULT 1,
+  motivo VARCHAR(255) NULL,
   PRIMARY KEY (id),
   KEY idx_consultas_fecha (fecha_hora),
   KEY idx_consultas_profesor (id_profesor),
@@ -76,6 +77,34 @@ CREATE TABLE alumno_consulta (
     ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT fk_ac_consulta
     FOREIGN KEY (id_consulta) REFERENCES consultas (id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- Docente asignado a una cátedra (jefe publicado en las fichas del departamento).
+CREATE TABLE profesor_materia (
+  legajo_profesor INT UNSIGNED NOT NULL,
+  id_materia INT UNSIGNED NOT NULL,
+  PRIMARY KEY (legajo_profesor, id_materia),
+  KEY idx_pm_materia (id_materia),
+  CONSTRAINT fk_pm_profesor
+    FOREIGN KEY (legajo_profesor) REFERENCES profesores (legajo)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT fk_pm_materia
+    FOREIGN KEY (id_materia) REFERENCES materias (id)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- Código de un solo uso para el login del alumno (10 minutos).
+CREATE TABLE codigos_acceso (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  legajo_alumno INT UNSIGNED NOT NULL,
+  codigo_hash VARCHAR(255) NOT NULL,
+  expira DATETIME NOT NULL,
+  usado TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (id),
+  KEY idx_codigo_legajo (legajo_alumno),
+  CONSTRAINT fk_codigo_alumno
+    FOREIGN KEY (legajo_alumno) REFERENCES alumnos (legajo)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 

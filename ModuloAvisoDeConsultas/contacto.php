@@ -8,12 +8,11 @@ require_once __DIR__ . '/includes/bootstrap.php';
     require_app('templates/header.php')
 ?>
 
-<link href="css/estilos.css" rel="stylesheet">
 <link href="css/formulario.css" rel="stylesheet">
 
 <div class="container">
     <section class="main row" style="background-color:rgba(0, 0, 0, 0);">
-        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-6">
+        <div class="col-12 col-lg-6 formulario-contacto">
             <div class="titulo">
                 <h2>Contacto</h2>
             </div>  
@@ -51,11 +50,11 @@ require_once __DIR__ . '/includes/bootstrap.php';
             </form>
         </div>
 
-        <aside class="col-xs-12 col-sm-4 col-md-3 col-lg-6">
+        <aside class="col-12 col-lg-6">
         <div class="container">
             <div class="ubicacionUTN" style="background-color:rgba(0, 0, 0, 0);">
                 <br><br><br>
-                <div class="mapouter"><div class="gmap_canvas"><iframe width="450" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=zeballos%201341%20Rosario&t=&z=17&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://2piratebay.org"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}</style><a href="https://www.embedgooglemap.net">copy google map</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div></div>
+                <iframe class="mapa-facultad" title="UTN Facultad Regional Rosario, Zeballos 1341" src="https://maps.google.com/maps?q=zeballos%201341%20Rosario&z=17&output=embed"></iframe>
             </div>
         </div>
         </aside>

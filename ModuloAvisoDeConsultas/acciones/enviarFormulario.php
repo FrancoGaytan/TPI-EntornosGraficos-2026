@@ -1,52 +1,38 @@
 <?php
 require_once __DIR__ . '/../includes/bootstrap.php';
- 
-//librerias
-use PHPMailer\PHPMailer\PHPMailer;
+require_once __DIR__ . '/../includes/mail.php';
 
-require __DIR__ . '/../lib/PHPMailer/src/PHPMailer.php';
-require __DIR__ . '/../lib/PHPMailer/src/SMTP.php';
+$nombre = trim($_POST['nombre'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$telefono = trim($_POST['telefono'] ?? '');
+$asunto = trim($_POST['asunto'] ?? '');
+$mensaje = trim($_POST['mensaje'] ?? '');
 
-$nombre=$_POST['nombre'];
-$email=$_POST['email'];
-$telefono=$_POST['telefono'];
-$asunto=$_POST['asunto'];
-$mensaje=$_POST['mensaje'];
- 
-//Create a new PHPMailer instance
-$mail = new PHPMailer();
-$mail->IsSMTP();
- 
-//Configuracion servidor mail
-$mail->From = "consultas.utn.entornos@gmail.com"; //remitente
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = 'tls'; //seguridad
-$mail->Host = "smtp.gmail.com"; // servidor smtp
-$mail->Port = 587; //puerto
-$mail->Username ='consultas.utn.entornos@gmail.com'; //nombre usuario
-$mail->Password = 'consultas123'; //contraseña
- 
-//Agregar destinatario
-$mail->AddAddress("fedenavos@gmail.com");
-$mail->AddAddress("gaytanfranco@gmail.com");
-$mail->Subject = "Mensaje en Consultas UTN";
-$mensaje = "
-Llego una consulta en su sitio web con los siguientes datos: \n
-Nombre: $nombre \n
-Email: $email \n
-Telefono: $telefono \n
-Asunto: $asunto \n
-Mensaje: $mensaje 
-";
-$mail->Body = $mensaje;
- 
-//Avisar si fue enviado o no y dirigir al index
-if ($mail->Send()) {
-    echo'<script type="text/javascript">
-           alert("Enviado Correctamente");
-        </script>';
+$cfg = app_mail_config();
+$destinos = $cfg['contacto'] ?? [app_mail_inbox()];
+if (!is_array($destinos) || $destinos === []) {
+    $destinos = [app_mail_inbox()];
+}
+
+$cuerpo = "Llegó un mensaje desde Consultas UTN.\n\n"
+    . "Nombre: {$nombre}\n"
+    . "Email: {$email}\n"
+    . "Teléfono: {$telefono}\n"
+    . "Asunto: {$asunto}\n"
+    . "Mensaje:\n{$mensaje}\n";
+
+$enviado = false;
+foreach ($destinos as $destino) {
+    if (app_enviar_mail((string) $destino, 'Mensaje en Consultas UTN', $cuerpo, $email)) {
+        $enviado = true;
+    }
+}
+
+if ($enviado) {
+    echo '<script type="text/javascript">alert("Enviado correctamente"); window.location.href="../contacto.php";</script>';
 } else {
-    echo'<script type="text/javascript">
-           alert("NO ENVIADO, intentar de nuevo");
-        </script>';
+    $detalle = app_mail_es_demo()
+        ? 'Falta configurar la contraseña de aplicación en config/mail.config.php.'
+        : 'No se pudo enviar. Revisá la configuración de correo.';
+    echo '<script type="text/javascript">alert(' . json_encode($detalle) . '); window.location.href="../contacto.php";</script>';
 }

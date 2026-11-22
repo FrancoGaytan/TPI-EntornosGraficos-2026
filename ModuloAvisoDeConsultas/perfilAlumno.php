@@ -29,21 +29,12 @@ require_once __DIR__ . '/includes/bootstrap.php';
                     <h2>Mis Proximas Consultas</h2>
                 </div>
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col">Consulta</th>
-                        <th scope="col">Horario</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        require_app('includes/getMyConsultasAlumno.php')
-                        ?>
-                    </tbody>
-                </table>
+                <?php require app_path('includes/getMyConsultasAlumno.php'); ?>
+
+                <div class="titulo">
+                    <h2>Consultas ya atendidas</h2>
+                </div>
+                <?php require app_path('includes/getHistorialAlumno.php'); ?>
 
             </div>
         </aside>

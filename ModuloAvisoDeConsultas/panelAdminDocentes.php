@@ -10,13 +10,6 @@ require_once __DIR__ . '/includes/bootstrap.php';
     require_app('templates/header.php')
 ?>
 
-<style>
-    .div_before_table {
-        overflow:hidden;
-        overflow-y: scroll;
-        height: 500px;
-    }
-</style>
 
 <div class="container">
     <?php   
@@ -36,6 +29,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
             <br>
             <h3><?php echo $_SESSION['nombre']; echo ' '; echo $_SESSION['apellido'] ?></h3>
             <h4>Legajo: <?php echo $_SESSION['legajo'] ?></h4>
+            <a class="btn btn-outline-secondary" href="regDocente.php">Registrar docente</a>
 
         </article>
 
@@ -43,11 +37,22 @@ require_once __DIR__ . '/includes/bootstrap.php';
         <div class="container">
 
                 <div class="titulo">
-                    <h2>Docentes</h2>
+                    <h2><?php echo (($_GET['pendientes'] ?? '') === '1') ? 'Solicitudes de docentes' : 'Docentes'; ?></h2>
                 </div>
+                <form class="row g-2 mb-3" method="get">
+                    <?php if (($_GET['pendientes'] ?? '') === '1'): ?>
+                        <input type="hidden" name="pendientes" value="1">
+                    <?php endif; ?>
+                    <div class="col-md-8">
+                        <input class="form-control" type="search" name="q" value="<?php echo app_h($_GET['q'] ?? ''); ?>" placeholder="Buscar por nombre, legajo o email">
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" type="submit">Buscar</button>
+                    </div>
+                </form>
 
                 <div class="div_before_table">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-admin">
                         <thead>
                             <tr>
                             <th scope="col"></th>
@@ -56,11 +61,12 @@ require_once __DIR__ . '/includes/bootstrap.php';
                         </thead>
                         <tbody>
                             <?php
-                            require_app('includes/getAllDocentes.php')
+                            require app_path('includes/getAllDocentes.php');
                             ?>
                         </tbody>
                     </table>
                 </div>
+                <?php echo $paginacion_html ?? ''; ?>
                 
             </div>
         </aside>

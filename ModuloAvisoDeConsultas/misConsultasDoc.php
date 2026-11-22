@@ -12,52 +12,24 @@ require_once __DIR__ . '/includes/bootstrap.php';
 
 <div class="container">
     <?php
-        if(isset($_GET["msg"])) {
-            echo "
-            <div class='alert alert-success margined' role='alert'>
-            " . $_GET["msg"] . "
-            </div>
-            ";
+        if (!empty($_GET['msg'])) {
+            echo '<div class="alert alert-info margined" role="alert">' . app_h($_GET['msg']) . '</div>';
         }
     ?>
-    <section class="main row">
-        <article class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
-            <br>
-            <img src="img/perfilVacio.jpg" alt="..." class="img-thumbnail">
-            <br>
-            <br>
-            <h3><?php echo $_SESSION['nombre']; echo ' '; echo $_SESSION['apellido'] ?></h3>
-            <h4>Legajo: <?php echo $_SESSION['legajo'] ?></h4>
-            <td><button type="button" class="btn btn-outline-secondary" onclick="window.location.href = 'historialConsultasDoc.php'">Historial de Consultas </button></td>
-
+    <section class="row g-4 docente-panel">
+        <article class="col-md-3">
+            <div class="docente-perfil">
+                <img src="img/perfilVacio.jpg" alt="Foto de perfil" class="docente-avatar">
+                <h3><?php echo app_h($_SESSION['nombre'] . ' ' . $_SESSION['apellido']); ?></h3>
+                <p>Legajo <?php echo app_h((string) $_SESSION['legajo']); ?></p>
+                <a class="btn btn-outline-secondary" href="historialConsultasDoc.php">Historial de consultas</a>
+            </div>
         </article>
 
-        <aside class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
-        <div class="container">
-
-                <div class="titulo">
-                    <h2>Mis Proximas Consultas</h2>
-                </div>
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col">Consulta</th>
-                        <th scope="col">Horario</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        require_app('includes/getMyConsultas.php')
-                        ?>
-                    </tbody>
-                </table>
-
-            </div>
+        <aside class="col-md-9">
+            <h2 class="docente-titulo">Mis próximas consultas</h2>
+            <?php require app_path('includes/getMyConsultas.php'); ?>
         </aside>
-  
     </section>
 </div>
 

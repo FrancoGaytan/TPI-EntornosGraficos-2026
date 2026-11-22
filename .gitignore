@@ -1,1 +1,3 @@
 ModuloAvisoDeConsultas/config/db.config.php
+ModuloAvisoDeConsultas/config/mail.config.php
+ModuloAvisoDeConsultas/logs/

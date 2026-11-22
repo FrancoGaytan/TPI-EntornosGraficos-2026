@@ -1,8 +1,5 @@
 <?php
-/**
- * Usar con Docker Compose (host = nombre del servicio mysql en docker-compose.yml).
- * Copiar a db.config.php antes de: docker compose up
- */
+// Copiar este archivo como db.config.php para usar Docker.
 return [
     'host' => 'mysql',
     'user' => 'tpi',

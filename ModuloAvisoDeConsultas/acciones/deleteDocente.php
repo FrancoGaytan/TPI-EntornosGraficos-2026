@@ -2,10 +2,10 @@
 require_once __DIR__ . '/../includes/bootstrap.php';
 $legajo = $_GET['legajo'];
 
-require_app('config/db.php');
+require app_path('config/db.php');
 
 $consulta="DELETE FROM profesores WHERE legajo = $legajo;";
-$resultado = mysqli_query($conexion,$consulta) or die (mysqli_error($conexion));
+$resultado = mysqli_query($conexion,$consulta) or app_die($conexion);
 
 if(is_object($resultado))
     mysqli_free_result($resultado);

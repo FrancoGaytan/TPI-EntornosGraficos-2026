@@ -5,16 +5,16 @@ $apellidoAlumno=$_POST['apellidoAlumno'];
 $legajoAlumno=(int) $_POST['legajoAlumno'];
 $emailAlumno=$_POST['emailAlumno'];
 
-require_app('config/db.php');
+require app_path('config/db.php');
 
 // Busco por legajo
 $consulta = "SELECT Count(legajo) as cantidad FROM alumnos WHERE legajo='$legajoAlumno'";
-$resultado = mysqli_query($conexion, $consulta) or die (mysqli_error($conexion));
+$resultado = mysqli_query($conexion, $consulta) or app_die($conexion);
 $cantAlumnosLegajo = mysqli_fetch_assoc($resultado);
 
 // Busco por email
 $consulta = "SELECT Count(legajo) as cantidad FROM alumnos WHERE email='$emailAlumno'";
-$resultado = mysqli_query($conexion, $consulta) or die (mysqli_error($conexion));
+$resultado = mysqli_query($conexion, $consulta) or app_die($conexion);
 $cantAlumnosEmail = mysqli_fetch_assoc($resultado);
 
 if ($cantAlumnosLegajo ['cantidad']!=0){
@@ -27,7 +27,7 @@ else {
       else {
             $consulta = "INSERT INTO alumnos (legajo, nombre, apellido, email) 
                   VALUES ('$legajoAlumno', '$nombreAlumno', '$apellidoAlumno', '$emailAlumno')";
-            $resultado=mysqli_query($conexion,$consulta) or die (mysqli_error($conexion));
+            $resultado=mysqli_query($conexion,$consulta) or app_die($conexion);
             header("Location: ../panelAdminAlumnos.php?msg=".urlencode("El alumno $nombreAlumno $apellidoAlumno fue agregado correctamente"));
       }
 }

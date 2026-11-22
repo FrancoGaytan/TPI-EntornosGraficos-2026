@@ -10,8 +10,6 @@ require_once __DIR__ . '/includes/bootstrap.php';
     require_app('templates/header.php')
 ?>
 
-<link href="css/estilos.css" rel="stylesheet">
-
 <div class="contenido">
   <form action="./acciones/reprogramar.php" method="post" class="formulario">
       <div class="titulo">

@@ -51,7 +51,7 @@ require_once __DIR__ . '/../includes/bootstrap.php';
                         <a href="./contacto.php" class="text-reset">Contacto</a>
                     </p>
                     <p>
-                        <a href="https://www.frro.utn.edu.ar/contenido.php?cont=343&subc=16" target=”_blank” class="text-reset">Acerca de nosotros</a>
+                        <a href="./acerca.php" class="text-reset">Acerca de nosotros</a>
                     </p>
                 </div>
             </div>
@@ -64,4 +64,22 @@ require_once __DIR__ . '/../includes/bootstrap.php';
     </div>
     <!-- Copyright -->
 </footer>
+<script>
+document.querySelectorAll('.aviso-temporal').forEach(function (aviso) {
+    setTimeout(function () {
+        aviso.classList.add('aviso-oculto');
+    }, 3000);
+});
+document.querySelectorAll('.js-ver-clave').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        var campo = btn.closest('.clave-campo') || btn.parentElement;
+        var input = campo.querySelector('input');
+        if (!input) return;
+        var mostrar = input.type === 'password';
+        input.type = mostrar ? 'text' : 'password';
+        btn.classList.toggle('viendo', mostrar);
+        btn.setAttribute('aria-label', mostrar ? 'Ocultar contraseña' : 'Ver contraseña');
+    });
+});
+</script>
 <!-- Footer -->

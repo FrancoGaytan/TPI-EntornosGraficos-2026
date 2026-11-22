@@ -1,25 +1,31 @@
 <?php
 require_once __DIR__ . '/../includes/bootstrap.php';
-$id = $_POST['id'];
-$fecha = $_POST['fechaConsulta'];
-$hora = $_POST['horaConsulta'];
+require_once __DIR__ . '/../includes/notificar.php';
+require_app('includes/restringidoDocente.php');
 
-$formatoInput = 'Y-m-d H:i';
-$fechaHora = DateTime::createFromFormat($formatoInput, $fecha . ' ' . $hora);
-$formatoOutput = 'Y-m-d H:i:s';
-$fechaString = $fechaHora -> format($formatoOutput);
+$id = (int) ($_POST['id'] ?? 0);
+$fecha = $_POST['fechaConsulta'] ?? '';
+$hora = $_POST['horaConsulta'] ?? '';
+$legajo = (int) $_SESSION['legajo'];
 
-require_app('config/db.php');
+$fechaHora = DateTime::createFromFormat('Y-m-d H:i', $fecha . ' ' . $hora);
+$mensaje = app_fecha_consulta_mensaje($fechaHora);
+if ($mensaje) {
+    header('Location: ../misConsultasDoc.php?msg=' . urlencode($mensaje));
+    exit();
+}
 
-$consulta="UPDATE consultas SET fecha_hora = '$fechaString' WHERE id = $id;";
-$resultado=mysqli_query($conexion,$consulta) or die (mysqli_error($conexion));
+$fechaString = $fechaHora->format('Y-m-d H:i:s');
+require app_path('config/db.php');
 
-if(is_object($resultado))
-    mysqli_free_result($resultado);
+mysqli_query($conexion, "UPDATE consultas SET fecha_hora = '{$fechaString}' WHERE id = {$id} AND id_profesor = {$legajo} AND estado = 1") or app_die($conexion);
 
+if ($conexion->affected_rows > 0) {
+    app_notificar_inscriptos($conexion, $id, 'Consulta reprogramada', 'La consulta cambió de fecha y hora.');
+    $aviso = 'La consulta fue reprogramada.' . app_aviso_mail();
+} else {
+    $aviso = 'No se pudo reprogramar la consulta.';
+}
 mysqli_close($conexion);
-
-header("Location: ../misConsultasDoc.php?msg=".urlencode("La consulta fue modificada correctamente"));
+header('Location: ../misConsultasDoc.php?msg=' . urlencode($aviso));
 exit();
-
-?>

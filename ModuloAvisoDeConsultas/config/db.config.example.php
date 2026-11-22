@@ -1,8 +1,5 @@
 <?php
-/**
- * Copiar este archivo a db.config.php y ajustar credenciales.
- * XAMPP típico: usuario root, contraseña vacía.
- */
+// Copiar este archivo como db.config.php para usar XAMPP.
 return [
     'host' => 'localhost',
     'user' => 'root',

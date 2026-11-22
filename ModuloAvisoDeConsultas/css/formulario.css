@@ -1,41 +1,43 @@
   .contact_form{  
-    width: 460px; 
+    width: 100%;
+    max-width: 460px; 
     height: auto;
-    margin: 80px auto;
+    margin: 1.5rem auto;
     border-radius: 10px;  
-    padding-top: 30px;
-    padding-bottom: 20px;  
+    padding: 1.25rem;  
     background-color: #fbfbfb; 
-    padding-left: 30px; 
   }
   
   
   input{
     background-color: #fbfbfb; 
-    width: 408px; 
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; 
     height: 40px; 
     border-radius: 5px;  
     border-style: solid; 
     border-width: 1px; 
     border-color: #6711d8; 
-    margin-top: 10px;  
-    padding-left: 10px;
-    margin-bottom: 20px; 
+    margin-top: 0.35rem;  
+    padding: 0.55rem 0.75rem;
+    margin-bottom: 1rem; 
   }
   
   
   textarea{
     background-color: #fbfbfb; 
-    width: 405px; 
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; 
     height: 150px; 
     border-radius: 5px;  
     border-style: solid; 
     border-width: 1px; 
     border-color: #6711d8; 
-    margin-top: 10px;  
-    padding-left: 10px;
-    margin-bottom: 20px; 
-    padding-top: 15px; 
+    margin-top: 0.35rem;  
+    padding: 0.75rem;
+    margin-bottom: 1rem; 
   }
   
   
@@ -49,14 +51,16 @@
     height: 45px; 
     padding-left: 5px;
     padding-right: 5px;   
-    margin-bottom: 20px; 
-    margin-top: 10px;   
+    margin-bottom: 1rem; 
+    margin-top: 0.5rem;   
     text-transform: uppercase;
     background-color: #070ac2; 
     border-color: #070ac2; 
     border-style: solid; 
     border-radius: 10px;  
-    width: 420px;   
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;   
     cursor: pointer;
   }
   
@@ -119,10 +123,6 @@
     border: 1px solid #97d848;
   }
 
-  * {
-    margin:0;
-    padding:0;
-    }
     #columna1 {
     position:absolute;
     top:0px;

@@ -11,25 +11,20 @@ require_once __DIR__ . '/includes/bootstrap.php';
     require_app('templates/header.php')
 ?>
 
-<link href="css/estilos.css" rel="stylesheet">
-
-<?php
-    if(isset($_GET["msg"])) {
-        echo "
-        <div class='alert alert-success margined' role='alert'>
-        " . $_GET["msg"] . "
-        </div>
-        ";
-    }
-?>
+<?php if (!empty($_GET['msg'])): ?>
+    <div class="alert alert-success margined" role="alert"><?php echo app_h($_GET['msg']); ?></div>
+<?php endif; ?>
+<?php if (!empty($_GET['error'])): ?>
+    <div class="alert alert-danger margined" role="alert"><?php echo app_h($_GET['error']); ?></div>
+<?php endif; ?>
 
 <div class="contenido">
     
   <form action="./acciones/registrarConsulta.php" method="post" class="formulario form-group">
       <?php
       if ((isset($_SESSION['esAdmin'])) && ($_SESSION['esAdmin'])) {
-        echo '<div class="alert alert-danger" role="alert">
-        Para registrar una consulta debe iniciar sesión como Docente. Puede registrar uno <a href="regDocente.php">aquí</a>.
+        echo '<div class="alert alert-warning" role="alert">
+        Estás como administrador. Para publicar una consulta, entrá con un usuario docente.
         </div>';
       }
       ?>
@@ -41,7 +36,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
       <select name="idMateria" class="form-select" aria-label="Default select example" required>
         <option disabled selected>Selecciona la materia</option>
         <?php
-          require_app('includes/getAllMaterias.php')
+          require_app('includes/getMateriasDocente.php')
         ?>
       </select>
 

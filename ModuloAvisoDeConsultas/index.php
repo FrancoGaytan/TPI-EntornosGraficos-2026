@@ -1,31 +1,4 @@
 <?php
 require_once __DIR__ . '/includes/bootstrap.php';
-?>
-<!doctype html>
-<html lang="en">
-
-<?php
-        require_app('templates/header.php')
-?>
-<div class="margined" align="center">
-    
-        <button class="btn btn-dark" role="button" onclick="window.location.href = 'loginAlumno.php'">
-        Soy alumno
-        </button>
-        <button class="btn btn-secondary" role="button" onclick="window.location.href = 'loginDocente.php'">
-        Soy docente
-        </button>
-
-        <br>
-        <br>
-        <br>
-
-        <a href="loginAdmin.php">Soy administrador</a>
-    
-</div>
-
-<?php
-    require_app('templates/footer.php')
-?>
-
-</html>
+header('Location: ' . app_url('loginAlumno.php'));
+exit;
